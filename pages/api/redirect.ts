@@ -21,7 +21,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   const entry = await db
     .db("links_db")
     .collection("links_collection")
-    .findOne({ _id: new ObjectId(req.query.id as string) });
+    .findOne({ _id: req.query.id });
   if (entry !== null) {
     return res.redirect(301, entry.link);
   }
