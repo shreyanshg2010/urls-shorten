@@ -1,37 +1,37 @@
-.logo{
+.logo {
   float: left;
   width: 120px;
   height: 30px;
   margin: 16px 24px 16px 0px;
-  background: rgba(255,255,255,.3);
+  background: rgba(255, 255, 255, 0.3);
 }
-.content{
+.content {
   display: flex;
   align-items: center;
   padding: 0 50px;
   min-height: calc(100vh - 64px - 70px);
 }
 
-.shortner{
+.shortner {
   width: 100%;
   background: #fff;
   padding: 24px 20px;
 }
 
-.linkField{
+.linkField {
   display: flex;
   width: 100%;
 }
 
-.linkFieldInput{
+.linkFieldInput {
   flex: 100%;
   margin-right: 5px;
 }
 
-.linkFieldButton{
+.linkFieldButton {
   width: 120px;
 }
 
-.footer{
+.footer {
   text-align: center;
 }
