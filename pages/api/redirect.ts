@@ -22,10 +22,10 @@ export default async (req: NowRequest, res: NowResponse) => {
     .db("links_db")
     .collection("links_collection")
     .findOne({ _id: new ObjectId(req.query.id as string) });
-  if(entry !==null){
-      return res.redirect(301, entry.link);
-  } 
-  return res.redirect(301, '/'entry);
+  if (entry !== null) {
+    return res.redirect(301, entry.link);
+  }
+  return res.redirect(301, "/");
 
   console.log("req", req.body.link);
   if (req.body.link) {
