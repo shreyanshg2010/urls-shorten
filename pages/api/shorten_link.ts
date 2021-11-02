@@ -20,12 +20,38 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
   console.log("req", req.body.link);
   if (req.body.link) {
+    if (req.body.link.includes("urls-shorten")) {
+      const findEntry = await db
+        .db("links_db")
+        .collection("links_collection")
+        .findOne({
+          _id: req.body.link.split("/").at(-1),
+        });
+      res.statusCode = 201;
+      return res.json({
+        short_link: `${findEntry.link}`,
+      });
+    }
+    let generatedId = crypto.randomBytes(3).toString("hex");
+    while (1) {
+      const findGenEntry = await db
+        .db("links_db")
+        .collection("links_collection")
+        .findOne({
+          _id: generatedId,
+        });
+      if (findGenEntry) {
+        generatedId = crypto.randomBytes(3).toString("hex");
+      } else {
+        break;
+      }
+    }
     const entry = await db
       .db("links_db")
       .collection("links_collection")
       .insertOne({
         link: req.body.link,
-        _id: crypto.randomBytes(3).toString("hex"),
+        _id: generatedId,
       });
     res.statusCode = 201;
     return res.json({
