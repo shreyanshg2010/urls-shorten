@@ -21,7 +21,11 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   console.log("req", req.body.link);
   let reqlink = req.body.link;
   console.log("ReqLinkHref:", reqlink.href);
-  let reqid = reqlink.href?.split("/").at(-1);
+  console.log("reqLinkType:", typeof reqlink);
+  let str = req.body.link + " ";
+  console.log("reqLinkStr:", str);
+  console.log("reqLinkStrType:", typeof str);
+  let reqid = reqlink?.split("/").at(-1);
   console.log("reqId:", reqid);
   if (reqlink) {
     if (reqlink.includes("shreyanshg2010")) {
