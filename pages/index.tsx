@@ -92,7 +92,7 @@ export default function Home() {
                     style={{ width: "100%" }}
                     size="large"
                   >
-                    Shorten !
+                    Submit !
                   </Button>
                 </Form.Item>
               </div>
