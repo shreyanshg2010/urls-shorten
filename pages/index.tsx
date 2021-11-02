@@ -36,7 +36,7 @@ export default function Home() {
       setMessage(response.data?.short_link);
     } catch (e) {
       const error = e as AxiosError<ShortenLinkError>;
-      console.log(error);
+      console.log(e);
       setStatus("error");
       setMessage(
         error.response?.data?.error_description || "Something went wrong"
