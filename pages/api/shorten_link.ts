@@ -19,14 +19,15 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   const db = await connectToDb();
 
   console.log("req", req.body.link);
-  if (req.body.link) {
+  if (req.body.link || true) {
     if (req.body.link.includes("urls-shorten")) {
       const findEntry = await db
         .db("links_db")
         .collection("links_collection")
         .findOne({
-          _id: req.body.link.split("/").at(-1),
+          _id: req.body.link.split("=").at(-1),
         });
+      console.log(findEntry);
       res.statusCode = 201;
       return res.json({
         short_link: `${findEntry.link}`,
@@ -40,6 +41,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         .findOne({
           _id: generatedId,
         });
+      console.log(findGenEntry);
+      console.log(generatedId);
       if (findGenEntry) {
         generatedId = crypto.randomBytes(3).toString("hex");
       } else {
@@ -53,6 +56,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         link: req.body.link,
         _id: generatedId,
       });
+    console.log(entry);
     res.statusCode = 201;
     return res.json({
       short_link: `${process.env.VERCEL_URL}/r/${entry.insertedId}`,
