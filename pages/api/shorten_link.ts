@@ -21,6 +21,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   console.log("req", req.body.link);
   let reqlink = req.body.link;
   let reqid = reqlink.href?.toString().split("/").at(-1);
+  console.log("reqId:", reqid);
   if (reqlink) {
     if (reqlink.includes("shreyanshg2010")) {
       const findEntry = await db
@@ -29,7 +30,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         .findOne({
           _id: reqid,
         });
-      console.log(findEntry);
+      console.log("findEntry:", findEntry);
       res.statusCode = 201;
       return res.json({
         short_link: `${findEntry.link}`,
