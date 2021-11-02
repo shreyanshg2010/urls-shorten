@@ -19,7 +19,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   const db = await connectToDb();
 
   console.log("req", req.body.link);
-  let reqlink = req.body.link;
+  let reqlink = req.body.link+"";
   let reqid = reqlink?.split("/").at(-1);
   if (reqlink) {
     if (reqlink.includes("shreyanshg2010")) {
