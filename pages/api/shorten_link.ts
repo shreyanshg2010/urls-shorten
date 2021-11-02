@@ -20,13 +20,14 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
   console.log("req", req.body.link);
   let reqlink = req.body.link;
+  let reqid = reqlink?.split("/").at(-1);
   if (reqlink) {
     if (reqlink.includes("shreyanshg2010")) {
       const findEntry = await db
         .db("links_db")
         .collection("links_collection")
         .findOne({
-          _id: reqlink?.split("/").at(-1),
+          _id: reqid,
         });
       console.log(findEntry);
       res.statusCode = 201;
